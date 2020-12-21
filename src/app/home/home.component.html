@@ -1,0 +1,47 @@
+<div id="home-container">
+    <div class="white-border-glass-box">
+        <div class="home-head-container">
+            <div class="row">
+                <div class="col-md-auto">
+                    <div class="avatar-frame-online">
+                        <img src="assets/img/generic_avatar.png" id="home-avatar-picture" />
+                    </div>
+                </div>
+
+                <div class="col">
+                    <b>Eduardo</b>
+                    <div>
+                        <span>Online</span> <br/>
+                        <span>< Escribe un mensaje personal ></span> <br/>
+
+                        <a (click)="logout()">LogOut</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="white-container-padded mar-top-15">
+
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Buscar Amigo" [(ngModel)]="query" />
+            </div>
+
+            <div class="col-md-auto">
+                <img src="assets/img/logo_live_add.png" class="icon" />
+            </div>
+        </div>
+        
+        <hr/>
+        <b *ngIf="friends">Amigos ({{friends.length}} / {{friends.length}})</b>
+
+        <div *ngFor="let user of friends | search: query; let i = index" class="display-block mar-bot-5">
+            <span routerLink="/converstation/{{user.uid}}">
+                <img src="assets/img/logo_live_online.png" class="icon" />
+                <b class="mar-bot-5">{{user.nick}}</b> - {{user.subnick || 'No SubNick'}}
+                <small>{{user.email}}</small>
+            </span>
+        </div>
+    </div>
+</div>
